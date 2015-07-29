@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Maer.Infrastructure
+namespace Maer.Infrastructure.Querying
 {
-    public class Class1
+    public enum QueryOperator
     {
+        And,
+        Or
     }
 }
