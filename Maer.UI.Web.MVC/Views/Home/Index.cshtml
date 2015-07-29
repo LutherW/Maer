@@ -1,0 +1,94 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    @Styles.Render("~/Content/easyui")
+    @Styles.Render("~/Content/site")
+    @Scripts.Render("~/bundles/easyui")
+    <script type="text/javascript">
+        var accordion;
+        $(function () {
+            
+            accordion = $('#nav_menu').accordion({
+                border: false,
+                fit: true,
+                onSelect: function (title, index) {
+                    var p = accordion.accordion('getPanel', index);
+                    if (p) {
+                        var options = p.panel("options");
+                        console.info(options.title);
+                    }
+                },
+                onBeforeRemove: function (title, index) {
+                    var p = accordion.accordion('getPanel', index);
+                    if (p) {
+                        p.panel("setTitle", "aaa");
+                    }
+                }
+            });
+
+        });
+
+        function addNavmenu(parentId) {
+            var panels = accordion.accordion('panels');
+
+            $.each(panels, function (i, n) {
+                accordion.accordion('remove', 0);
+            });
+            
+            for (var i = 0; i < 5; i++) {
+                var id = i + 1;
+                var title = "Title_"+parentId+"_" + id;
+                accordion.accordion('add', {
+                    id: id,
+                    title: title,
+                    content: '<div style="padding:10px">Contents' + id + '</div>',
+                    selected: false
+                });
+            }
+            accordion.accordion("select", 0);
+        }
+
+    </script>
+</head>
+<body id="body" class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',split:false" class="main-top">
+        <div class="easyui-layout" data-options="fit:true">   
+            <div data-options="region:'west',border:false" class="logo">
+                <img src="@Url.Content("~/Images/logo.png")" alt=""/>
+            </div>   
+            <div data-options="region:'center',border:false" class="nav">
+                
+            </div>   
+            <div data-options="region:'east',border:false" class="nav-right">
+                <div class="easyui-panel" data-options="border:false,cls:'nav-menu'">
+		            <i class="easyui-menubutton" data-options="menu:'#shortcut_menu',iconCls:'icon-undo',menuAlign:'right',size:'large'" style="border-radius: 0;"></i>
+	            </div>
+                <div class="easyui-panel" data-options="border:false,cls:'nav-info'">
+		            <div style="height:42px;float:left;text-align:center;">
+                        <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-man',size:'large'" style="border-radius: 0;border:none;background:none;"></a>
+		            </div>
+                    <div style="height:21px;line-height:21px;text-align:center;float:left;">您好，Admin</div>
+                    <div style="height:21px;line-height:21px;text-align:center;float:left;">超级管理员</div>
+	            </div>
+            </div>  
+        </div> 
+    </div>   
+    <div data-options="region:'west',title:'导航菜单',split:false" class="main-left">
+        <div id="nav_menu">
+	    </div>
+    </div>   
+    <div data-options="region:'center',fit:true" class="main-container"></div>   
+    <div id="shortcut_menu">
+		<div data-options="iconCls:'icon-undo'">管理网站</div>
+		<div data-options="iconCls:'icon-undo'">修改密码</div>
+		<div data-options="iconCls:'icon-undo'">注销登录</div>
+	</div>
+</body>
+</html>

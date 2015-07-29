@@ -1,0 +1,8 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*================管理首页布局.开始===================*/
+.main-top{ height:44px; background:#fafafa;}
+.main-left{ width:180px;}
+.main-container{ padding:5px; background:#fff; overflow:hidden; }
+
+/*================管理首页布局.结束===================*/

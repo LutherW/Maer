@@ -1,0 +1,10 @@
+﻿@charset "utf-8";
+/* CSS Document */
+@import url("../base.css");
+@import url("layout.css");
+.logo{ width:178px; background:#fafafa; border-right:1px solid #eee; overflow:hidden; }
+
+.nav { background:#fafafa;}
+.nav-right{ width:220px;background:#fafafa;}
+.nav-menu{ width:58px;height:100%;float:right;border-left:1px solid #eee;text-align:right;}
+.nav-info{ width:140px;height:100%;float:right;}
